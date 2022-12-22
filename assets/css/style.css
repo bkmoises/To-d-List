@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+/* red #e86759 */
+/* yellow #fafb79 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #1a1a1a;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* ul { */
+/*   display: flex; */
+/*   flex-direction: columm-reverse; */
+/*   margin-bottom: 20px; */
+/* } */
+
+.div-header button {
+  position: absolute;
+  right: 18%;
+  margin-top: -30px;
+}
+
+.div-header i {
+  font-size: 22px;
+}
+
+.to-do {
+  margin-top: 40px;
+  width: 60%;
+}
+
+.input-field {
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  width: 90%;
+}
+
+.div-body {
+  padding: 10px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  display: flex;
+  box-shadow: 6px 5px 10px 0px black;
+}
+
+button {
+  width: 10%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.add-item {
+  font-size: 30px;
+  margin-left: 10px;
+  background-color: #62dca5;
+  border-radius: 50%;
+  padding: 5px;
+  color: #fff;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+@media (max-width: 775px) {
+  input {
+    width: 70%;
+  }
+
+  .div-body button {
+    width: 30%;
+  }
+
+  i {
+    font-size: 30px;
+    padding: 0px;
+  }
+
+  p {
+    font-size: x-large;
+  }
+}
