@@ -7,25 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <!-- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> -->
 </head>
 
 <body>
-  <div class="to-do">
-    <div class="div-header">
-      <p>To-Do List</p>
-      <button><i class="box trash-all"></i></button>
-    </div>
-    <hr />
+
+  <header>
+    <h1>Just to do it</h1>
+    <button class="box delete-all">🗑</button>
     <br />
+  </header>
 
-    <div class="div-body">
-      <input class="input-field" type="text">
-      <button><i class="box add-item"></i></button>
+  <main>
+    <div class="input-field">
+      <input type="text">
+      <button class="box delete-task">Add</button>
     </div>
-    <ul> </ul>
-  </div>
 
+
+    <div class='tasks'>
+      <ul>
+      </ul>
+    </div>
+
+  </main>
   <script src="./assets/js/main.js"> </script>
 </body>
 
