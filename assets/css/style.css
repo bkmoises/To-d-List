@@ -31,8 +31,14 @@ h1 {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  float: right;
-  margin: 0px 35px 10px 0px;
+  position: absolute;
+  right: 30px;
+  top: 24px;
+}
+
+.delete-all:hover {
+  color: #f77b72;
+  transition: .5;
 }
 
 .input-field {
@@ -56,7 +62,7 @@ input:hover, input:focus {
   border: solid 1px #00f9b6;
 }
 
-.delete-task {
+.add-task {
   height: 50px;
   width: 5%;
   margin: 0;
@@ -68,14 +74,9 @@ input:hover, input:focus {
   cursor: pointer;
 }
 
-.delete-task:hover {
+.add-task:hover {
   background-color: #a1ffe6;
   transition: .5s;
-}
-
-.delete-all:hover {
-  color: #f77b72;
-  transition: .5;
 }
 
 .tasks {
