@@ -137,6 +137,7 @@ li p {
 li button {
   font-size: 22px;
   color: #fff;
+  text-align: center;
   height: 100%;
   width: 3%;
   box-sizing: border-box;

@@ -1,21 +1,28 @@
-const inputField = document.querySelector('.input-field');
-const ulList = document.querySelector('ul');
+const task = document.querySelector("ul");
+const input = document.querySelector('input');
 
-const taskList = [];
+function addTask(textTask) {
+  const newTask = document.createElement('li');
+  const newButton = document.createElement('button');
+  const newP = document.createElement('p')
+  const createTextBtn = document.createTextNode('🗑')
+  const createText = document.createTextNode(textTask);
 
-function getValue() {
+  newP.appendChild(createText);
+  newButton.appendChild(createTextBtn);
+  newTask.appendChild(newP);
+  newTask.appendChild(newButton);
+  task.insertAdjacentElement('afterbegin', newTask);
+};
+
+function getInput() {
   document.addEventListener('click', event => {
-    if (event.target.classList.contains('add-item')) {
-      const textCreator = document.createTextNode(inputField.value);
-      const liCreator = document.createElement('li')
-
-      liCreator.appendChild(textCreator);
-      liCreator.setAttribute('checkbox');
-      ulList.appendChild(liCreator)
-
-    }
+    const elem = event.target;
+    if (input.value && elem.classList.contains('add-task')) {
+      addTask(input.value);
+      input.value = "";
+    };
   });
 };
 
-getValue();
-console.log(ulList)
+getInput();
