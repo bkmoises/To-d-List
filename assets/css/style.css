@@ -23,6 +23,7 @@ h1 {
   font-size: 23px;
   font-variant: small-caps;
   color: #00f9b6;
+  letter-spacing: 1.5px;
 }
 
 .delete-all {
@@ -56,6 +57,7 @@ input {
   color: #666;
   box-sizing: border-box;
   padding-left: 14px;
+  outline: none;
 }
 
 input:hover, input:focus {
@@ -72,6 +74,7 @@ input:hover, input:focus {
   font-weight: bold;
   background-color: #00f9b6;
   cursor: pointer;
+  letter-spacing: 2px;
 }
 
 .add-task:hover {
