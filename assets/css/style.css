@@ -82,6 +82,12 @@ input:hover, input:focus {
   transition: .5s;
 }
 
+input::placeholder {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 .tasks {
   background-color: red;
   width: 70%;
