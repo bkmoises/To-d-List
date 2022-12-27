@@ -88,7 +88,7 @@ input:hover, input:focus {
 }
 
 .add-task:hover {
-  background-color: #a1ffe6;
+  background-color: #a1fff0;
   transition: .5s;
 }
 
@@ -148,4 +148,9 @@ li button {
   background-color: #FC524C;
   cursor: pointer;
   outline: none;
+}
+
+li button:hover {
+  background-color: #f77b72;
+  transition: 0.8s;
 }
