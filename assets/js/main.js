@@ -25,4 +25,16 @@ function getInput() {
   });
 };
 
+function getEnter() {
+  document.addEventListener('keydown', event => {
+    const elem = event;
+    if (input.value && elem.key == 'Enter') {
+      console.log(elem)
+      addTask(input.value);
+      input.value = "";
+    };
+  });
+};
+
 getInput();
+getEnter();
