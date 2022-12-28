@@ -1,40 +1,90 @@
-const task = document.querySelector("ul");
+const taskList = document.querySelector(".task-list");
+const ul = document.querySelector("ul");
+const li = document.querySelector('li');
+const addBtn = document.querySelector(".add-task");
 const input = document.querySelector('input');
 
-function addTask(textTask) {
-  const newTask = document.createElement('li');
-  const newButton = document.createElement('button');
-  const newP = document.createElement('p')
-  const createTextBtn = document.createTextNode('🗑')
-  const createText = document.createTextNode(textTask);
+addBtn.addEventListener('click', function() {
+  if (input.value) {
+    makeTask();
+    clearInput();
+  };
+});
 
-  newP.appendChild(createText);
-  newButton.appendChild(createTextBtn);
-  newTask.appendChild(newP);
-  newTask.appendChild(newButton);
-  task.insertAdjacentElement('afterbegin', newTask);
+document.addEventListener("keydown", event => {
+  if (event.key == 'Enter' && input.value) {
+    makeTask(input.value);
+    clearInput();
+    clearPage();
+  };
+});
+
+document.addEventListener('click', event => {
+  const elem = event.target;
+  if (elem.classList.contains("delete-task")) deleteTask(elem);
+  if (elem.classList.contains("delete-all")) deleteAllTasks();
+  clearPage();
+});
+
+function makeTask(newElement) {
+  const makeLi = document.createElement('li');
+  const makeP = document.createElement('p');
+  const makeBtn = document.createElement('button');
+
+  makeBtn.setAttribute('class', 'delete-task')
+  makeBtn.innerHTML = '🗑';
+  makeP.innerHTML = newElement;
+
+  makeLi.appendChild(makeP);
+  makeLi.appendChild(makeBtn);
+  ul.appendChild(makeLi);
+
+  saveTasks();
 };
 
-function getInput() {
-  document.addEventListener('click', event => {
-    const elem = event.target;
-    if (input.value && elem.classList.contains('add-task')) {
-      addTask(input.value);
-      input.value = "";
-    };
+function clearInput() {
+  input.value = '';
+};
+
+function deleteTask(element) {
+  element.parentElement.remove();
+  saveTasks();
+}
+
+function deleteAllTasks() {
+  const tasks = document.querySelectorAll('li');
+  tasks.forEach(elem => {
+    elem.remove();
   });
+  saveTasks();
 };
 
-function getEnter() {
-  document.addEventListener('keydown', event => {
-    const elem = event;
-    if (input.value && elem.key == 'Enter') {
-      console.log(elem)
-      addTask(input.value);
-      input.value = "";
-    };
-  });
+function clearPage() {
+  const tasks = document.querySelectorAll('li');
+  if (tasks.length) taskList.classList.remove('tasks');
+  if (!tasks.length) taskList.classList.add('tasks');
 };
 
-getInput();
-getEnter();
+function saveTasks() {
+  const tasks = document.querySelectorAll('li');
+  const arTasks = [];
+
+  for (let task of tasks) {
+    let taskContent = task.innerText.replace('🗑', '');
+    taskContent = taskContent.replace('/n', '');
+    arTasks.push(taskContent);
+  };
+
+  const taskJSON = JSON.stringify(arTasks);
+  localStorage.setItem('task', taskJSON);
+};
+
+function loadTasks() {
+  const strTasks = JSON.parse(localStorage.getItem('task'))
+  for (let tasks of strTasks) {
+    makeTask(tasks);
+  }
+};
+
+loadTasks();
+clearPage();
