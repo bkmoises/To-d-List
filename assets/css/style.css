@@ -103,6 +103,11 @@ input::placeholder {
   margin: 40px auto;
   background-color: #161A1F;
   border-radius: 15px;
+  box-sizing: border-box;
+}
+
+.tasks {
+  display: none;
 }
 
 ul {
