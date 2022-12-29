@@ -1,90 +1,63 @@
-const taskList = document.querySelector(".task-list");
-const ul = document.querySelector("ul");
-const li = document.querySelector('li');
-const addBtn = document.querySelector(".add-task");
-const input = document.querySelector('input');
+const inputField = document.querySelector('input');
 
-addBtn.addEventListener('click', function() {
-  if (input.value) {
-    makeTask();
-    clearInput();
-  };
-});
 
-document.addEventListener("keydown", event => {
-  if (event.key == 'Enter' && input.value) {
-    makeTask(input.value);
+document.addEventListener('click', event => {
+  const clickedElem = event.target;
+
+  try {
+    if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
+    if (clickedElem.classList.contains('delete-task')) deleteTask(clickedElem);
+    if (clickedElem.classList.contains('delete-all')) deleteAllTasks();
+  }
+
+  catch {
+
+  }
+
+  finally {
     clearInput();
     clearPage();
   };
 });
 
-document.addEventListener('click', event => {
-  const elem = event.target;
-  if (elem.classList.contains("delete-task")) deleteTask(elem);
-  if (elem.classList.contains("delete-all")) deleteAllTasks();
-  clearPage();
+document.addEventListener('keydown', event => {
+  if (event.key === 'Enter' && inputField.value) {
+
+    createNewTask(inputField.value);
+    clearPage();
+    clearInput();
+  };
 });
 
-function makeTask(newElement) {
-  const makeLi = document.createElement('li');
-  const makeP = document.createElement('p');
-  const makeBtn = document.createElement('button');
-
-  makeBtn.setAttribute('class', 'delete-task')
-  makeBtn.innerHTML = '🗑';
-  makeP.innerHTML = newElement;
-
-  makeLi.appendChild(makeP);
-  makeLi.appendChild(makeBtn);
-  ul.appendChild(makeLi);
-
-  saveTasks();
-};
-
 function clearInput() {
-  input.value = '';
-};
-
-function deleteTask(element) {
-  element.parentElement.remove();
-  saveTasks();
-}
-
-function deleteAllTasks() {
-  const tasks = document.querySelectorAll('li');
-  tasks.forEach(elem => {
-    elem.remove();
-  });
-  saveTasks();
+  inputField.value = '';
 };
 
 function clearPage() {
-  const tasks = document.querySelectorAll('li');
-  if (tasks.length) taskList.classList.remove('tasks');
-  if (!tasks.length) taskList.classList.add('tasks');
-};
+  const taskBody = document.querySelector('.task-list');
+  const taskList = document.querySelectorAll('li');
 
-function saveTasks() {
-  const tasks = document.querySelectorAll('li');
-  const arTasks = [];
-
-  for (let task of tasks) {
-    let taskContent = task.innerText.replace('🗑', '');
-    taskContent = taskContent.replace('/n', '');
-    arTasks.push(taskContent);
+  if (taskList.length) {
+    taskBody.classList.remove('tasks');
+  } else {
+    taskBody.classList.add('tasks');
   };
-
-  const taskJSON = JSON.stringify(arTasks);
-  localStorage.setItem('task', taskJSON);
 };
 
-function loadTasks() {
-  const strTasks = JSON.parse(localStorage.getItem('task'))
-  for (let tasks of strTasks) {
-    makeTask(tasks);
-  }
+function createNewTask(inputContent) {
+  const liElement = document.createElement('li');
+  const ulElement = document.querySelector('ul');
+  const liContent = `<p contenteditable="true">${inputContent}</p><button class="delete-task">🗑</button>`
+
+  liElement.innerHTML = liContent;
+  ulElement.appendChild(liElement);
+}
+
+function deleteTask(taskElement) {
+  taskElement.parentElement.remove();
 };
 
-loadTasks();
-clearPage();
+function deleteAllTasks() {
+  const tasks = document.querySelectorAll('li');
+  tasks.forEach(element => element.remove());
+};
