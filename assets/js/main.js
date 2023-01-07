@@ -1,8 +1,9 @@
 const inputField = document.querySelector('input');
 
-
 document.addEventListener('click', event => {
   const clickedElem = event.target;
+
+  storeTasks();
 
   try {
     if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
@@ -23,7 +24,6 @@ document.addEventListener('click', event => {
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Enter' && inputField.value) {
-
     createNewTask(inputField.value);
     clearPage();
     clearInput();
@@ -66,3 +66,25 @@ function deleteAllTasks() {
 function completeTask(clickedElem) {
   clickedElem.classList.toggle('completed-task');
 };
+
+function storeTasks() {
+  const userTasks = document.querySelectorAll('li');
+  for (tasks of userTasks) {
+    console.log(tasks.textContent)
+  }
+
+}
+
+// function saveTasks() {
+//   const tasks = document.querySelectorAll('li');
+//   const arTasks = [];
+
+//   for (let task of tasks) {
+//     let taskContent = task.innerText.replace('🗑', '');
+//     taskContent = taskContent.replace('/n', '');
+//     arTasks.push(taskContent);
+//   };
+
+//   const taskJSON = JSON.stringify(arTasks);
+//   localStorage.setItem('task', taskJSON);
+// };
