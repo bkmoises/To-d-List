@@ -138,6 +138,7 @@ li p {
   width: 96%;
   display: inline-block;
   margin: 3px 0 0 10px;
+  user-select: none;
 }
 
 li button {
@@ -159,4 +160,9 @@ li button {
 li button:hover {
   background-color: #f77b72;
   transition: 0.8s;
+}
+
+.completed-task {
+  text-decoration: line-through;
+  color: #444;
 }
