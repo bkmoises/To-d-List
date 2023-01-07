@@ -8,6 +8,7 @@ document.addEventListener('click', event => {
     if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
     if (clickedElem.classList.contains('delete-task')) deleteTask(clickedElem);
     if (clickedElem.classList.contains('delete-all')) deleteAllTasks();
+    if (clickedElem.nodeName === 'P') completeTask(clickedElem);
   }
 
   catch {
@@ -47,7 +48,7 @@ function clearPage() {
 function createNewTask(inputContent) {
   const liElement = document.createElement('li');
   const ulElement = document.querySelector('ul');
-  const liContent = `<p contenteditable="true">${inputContent}</p><button class="delete-task">🗑</button>`
+  const liContent = `<p>${inputContent}</p><button class="delete-task">🗑</button>`
 
   liElement.innerHTML = liContent;
   ulElement.appendChild(liElement);
@@ -60,4 +61,8 @@ function deleteTask(taskElement) {
 function deleteAllTasks() {
   const tasks = document.querySelectorAll('li');
   tasks.forEach(element => element.remove());
+};
+
+function completeTask(clickedElem) {
+  clickedElem.classList.toggle('completed-task');
 };
