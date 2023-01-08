@@ -3,7 +3,6 @@ const inputField = document.querySelector('input');
 document.addEventListener('click', event => {
   const clickedElem = event.target;
 
-  storeTask();
 
   try {
     if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
@@ -19,6 +18,7 @@ document.addEventListener('click', event => {
   finally {
     clearInput();
     clearPage();
+    storeTask();
   };
 });
 
@@ -27,6 +27,7 @@ document.addEventListener('keydown', event => {
     createNewTask(inputField.value);
     clearPage();
     clearInput();
+    storeTask();
   };
 });
 
@@ -79,5 +80,12 @@ function saveLocalData() {
 
 function storeTask() {
   const taskJson = JSON.stringify(saveLocalData());
-  localStorage.setItem('task', taskJson);
+  localStorage.setItem('tasks', taskJson);
 };
+
+(function uploadTasks() {
+  const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
+  storagedTasks.forEach(task => {
+    createNewTask(task);
+  });
+})();
