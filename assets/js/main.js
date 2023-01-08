@@ -3,7 +3,7 @@ const inputField = document.querySelector('input');
 document.addEventListener('click', event => {
   const clickedElem = event.target;
 
-  storeTasks();
+  storeTask();
 
   try {
     if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
@@ -67,24 +67,17 @@ function completeTask(clickedElem) {
   clickedElem.classList.toggle('completed-task');
 };
 
-function storeTasks() {
+function saveLocalData() {
   const userTasks = document.querySelectorAll('li');
+  const taskContent = [];
+
   for (tasks of userTasks) {
-    console.log(tasks.textContent)
-  }
+    taskContent.push(tasks.textContent.replace('🗑', ''));
+  };
+  return taskContent;
+};
 
-}
-
-// function saveTasks() {
-//   const tasks = document.querySelectorAll('li');
-//   const arTasks = [];
-
-//   for (let task of tasks) {
-//     let taskContent = task.innerText.replace('🗑', '');
-//     taskContent = taskContent.replace('/n', '');
-//     arTasks.push(taskContent);
-//   };
-
-//   const taskJSON = JSON.stringify(arTasks);
-//   localStorage.setItem('task', taskJSON);
-// };
+function storeTask() {
+  const taskJson = JSON.stringify(saveLocalData());
+  localStorage.setItem('task', taskJson);
+};
