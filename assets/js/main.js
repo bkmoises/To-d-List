@@ -1,11 +1,9 @@
 const inputField = document.querySelector('input');
 
-
 window.addEventListener('load', uploadTasks(), clearPage());
 
 document.addEventListener('click', event => {
   const clickedElem = event.target;
-
 
   try {
     if (clickedElem.classList.contains('add-task') && inputField.value) createNewTask(inputField.value);
