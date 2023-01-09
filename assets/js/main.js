@@ -56,8 +56,6 @@ function createNewTask(inputContent, completedTask) {
 
   liElement.innerHTML = liContent;
   ulElement.appendChild(liElement);
-
-  console.log(ulElement);
 }
 
 function deleteTask(taskElement) {
@@ -70,7 +68,6 @@ function deleteAllTasks() {
 };
 
 function completeTask(clickedElem) {
-  console.log(clickedElem)
   clickedElem.classList.toggle('completed-task');
 };
 
@@ -92,7 +89,6 @@ function storeTask() {
 
 function uploadTasks() {
   const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
-
   for (let i = 0; i < storagedTasks[0].length; i++) {
     createNewTask(storagedTasks[0][i], storagedTasks[1][i]);
   };
