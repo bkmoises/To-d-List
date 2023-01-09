@@ -47,13 +47,17 @@ function clearPage() {
   };
 };
 
-function createNewTask(inputContent) {
+function createNewTask(inputContent, completedTask) {
   const liElement = document.createElement('li');
   const ulElement = document.querySelector('ul');
-  const liContent = `<p>${inputContent}</p><button class="delete-task">🗑</button>`
+  const liContent = completedTask ?
+    `<p class="completed-task">${inputContent}</p><button class="delete-task">🗑</button>` :
+    `<p>${inputContent}</p><button class="delete-task">🗑</button>`
 
   liElement.innerHTML = liContent;
   ulElement.appendChild(liElement);
+
+  console.log(ulElement);
 }
 
 function deleteTask(taskElement) {
@@ -66,15 +70,17 @@ function deleteAllTasks() {
 };
 
 function completeTask(clickedElem) {
+  console.log(clickedElem)
   clickedElem.classList.toggle('completed-task');
 };
 
 function saveLocalData() {
   const userTasks = document.querySelectorAll('li');
-  const taskContent = [];
+  const taskContent = [[], []];
 
   for (tasks of userTasks) {
-    taskContent.push(tasks.textContent.replace('🗑', ''));
+    taskContent[0].push(tasks.textContent.replace('🗑', ''));
+    taskContent[1].push(tasks.children[0].className ? true : false);
   };
   return taskContent;
 };
@@ -86,7 +92,8 @@ function storeTask() {
 
 function uploadTasks() {
   const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
-  storagedTasks.forEach(task => {
-    createNewTask(task);
-  });
+
+  for (let i = 0; i < storagedTasks[0].length; i++) {
+    createNewTask(storagedTasks[0][i], storagedTasks[1][i]);
+  };
 };
