@@ -137,7 +137,8 @@ li {
 li p {
   width: 96%;
   display: inline-block;
-  margin: 3px 0 0 10px;
+  margin: -6px 0 0 -1px;
+  padding: 25px;
   user-select: none;
 }
 
@@ -146,7 +147,7 @@ li button {
   color: #fff;
   text-align: center;
   height: 100%;
-  width: 3%;
+  width: 40px;
   box-sizing: border-box;
   position: absolute;
   right: 1px;
