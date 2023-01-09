@@ -56,7 +56,7 @@ function createNewTask(inputContent, completedTask) {
 
   liElement.innerHTML = liContent;
   ulElement.appendChild(liElement);
-}
+};
 
 function deleteTask(taskElement) {
   taskElement.parentElement.remove();
