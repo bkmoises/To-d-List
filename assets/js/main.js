@@ -11,11 +11,9 @@ document.addEventListener('click', event => {
     if (clickedElem.classList.contains('delete-all')) deleteAllTasks();
     if (clickedElem.nodeName === 'P') completeTask(clickedElem);
   }
-
   catch {
-
+    alert("Error");
   }
-
   finally {
     clearInput();
     clearPage();
@@ -52,7 +50,7 @@ function createNewTask(inputContent, completedTask) {
   const ulElement = document.querySelector('ul');
   const liContent = completedTask ?
     `<p class="completed-task">${inputContent}</p><button class="delete-task">🗑</button>` :
-    `<p>${inputContent}</p><button class="delete-task">🗑</button>`
+    `<p>${inputContent}</p><button class="delete-task">🗑</button>`;
 
   liElement.innerHTML = liContent;
   ulElement.appendChild(liElement);
