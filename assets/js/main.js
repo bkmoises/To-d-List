@@ -88,8 +88,12 @@ function storeTask() {
 };
 
 function uploadTasks() {
-  const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
-  for (let i = 0; i < storagedTasks[0].length; i++) {
-    createNewTask(storagedTasks[0][i], storagedTasks[1][i]);
+  try {
+    const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
+    for (let i = 0; i < storagedTasks[0].length; i++) {
+      createNewTask(storagedTasks[0][i], storagedTasks[1][i]);
+    };
+  } catch {
+    localStorage.setItem('tasks', null);
   };
 };
