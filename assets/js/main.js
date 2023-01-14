@@ -1,7 +1,7 @@
 const inputField = document.querySelector('input');
 
 window.addEventListener('load', () => {
-  uploadTasks();
+  loadTasksFromLocalStorage();
   clearPage();
 });
 
@@ -88,7 +88,7 @@ function storeTask() {
   localStorage.setItem('tasks', taskJson);
 };
 
-function uploadTasks() {
+function loadTasksFromLocalStorage() {
   try {
     const storagedTasks = JSON.parse(localStorage.getItem('tasks'));
     for (let i = 0; i < storagedTasks[0].length; i++) {
