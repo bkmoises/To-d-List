@@ -95,6 +95,6 @@ function loadTasksFromLocalStorage() {
       createNewTask(storagedTasks[0][i], storagedTasks[1][i]);
     };
   } catch {
-    localStorage.setItem('tasks', null);
+    localStorage.removeItem('tasks');
   };
 };
